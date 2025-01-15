@@ -64,7 +64,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Forms\ClientOrGuest.xaml.cs">
+      <DependentUpon>ClientOrGuest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ManagerOrAdmin.xaml.cs">
+      <DependentUpon>ManagerOrAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UpsertOrder.xaml.cs">
+      <DependentUpon>UpsertOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UpsertProduct.xaml.cs">
+      <DependentUpon>UpsertProduct.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Service\ServiceLogin.cs" />
+    <Compile Include="Service\ServiceOrder.cs" />
+    <Compile Include="Service\ServiceProducts.cs" />
+    <Page Include="Forms\ClientOrGuest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ManagerOrAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UpsertOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UpsertProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -163,5 +193,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

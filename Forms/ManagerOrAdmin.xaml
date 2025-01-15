@@ -1,0 +1,25 @@
+﻿<Window x:Class="Plotnokov_21_102_AutoserviceGoods.Forms.ManagerOrAdmin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Plotnokov_21_102_AutoserviceGoods.Forms"
+        mc:Ignorable="d"
+        Title="ManagerOrAdmin" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Товары">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Заказы">
+                
+            </TabItem>
+        </TabControl>
+        <TextBlock x:Name="tbUserName" HorizontalAlignment="Right">Зубенко Михаил Петрович</TextBlock>
+    </Grid>
+</Window>
