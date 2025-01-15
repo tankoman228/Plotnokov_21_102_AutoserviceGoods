@@ -5,8 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Plotnokov_21_102_AutoserviceGoods"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Main Menu" Height="450" Width="800">
     <Grid>
-        
+
+        <StackPanel VerticalAlignment="Center" MinWidth="400" HorizontalAlignment="Center">
+            <TextBlock>Введите логин</TextBlock>
+            <TextBox x:Name="tbLogin"></TextBox>
+            <TextBlock>Введите пароль</TextBlock>
+            <PasswordBox x:Name="tbPassword"></PasswordBox>
+            <Label></Label>
+
+            <StackPanel x:Name="captcha" Visibility="Collapsed">
+                <TextBlock>Докажите, что вы не робот, пройдите капчу</TextBlock>
+                <TextBox x:Name="tbCap"></TextBox>
+
+                <Label Height="50"/>
+                <Grid>
+                    <TextBlock x:Name="tbCaptcha1" FontSize="90" Margin="0,10,0,0">3</TextBlock>
+                    <TextBlock x:Name="tbCaptcha2" FontSize="90" Margin="50,20,0,0">8</TextBlock>
+                    <TextBlock x:Name="tbCaptcha3" FontSize="90" Margin="100,10,0,0">L</TextBlock>
+                    <TextBlock x:Name="tbCaptcha4" FontSize="90" Margin="150,5,0,0">A</TextBlock>
+                    <TextBlock FontSize="90" Margin="0,-30,0,0">____</TextBlock>
+                    <TextBlock x:Name="tbCaptchaNoise1" Margin="0,20,0,0"  FontSize="80" Foreground="DarkGray">,./.,/,./</TextBlock>
+                    <TextBlock x:Name="tbCaptchaNoise2" Margin="0,-20,0,0" FontSize="80" Foreground="DarkGray">-=+-=+</TextBlock>
+                </Grid>
+            </StackPanel>
+
+            <Label></Label>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="btnEnter">Войти</Button>
+                <Button x:Name="btnEnterGuest" Grid.Column="2">Войти как гость</Button>
+            </Grid>
+        </StackPanel>
+
     </Grid>
 </Window>
