@@ -65,6 +65,6 @@
                 
             </TabItem>
         </TabControl>
-        <TextBlock x:Name="tbUserName" HorizontalAlignment="Right">Зубенко Михаил Петрович</TextBlock>
+        <TextBlock x:Name="tbUserName" HorizontalAlignment="Right" Margin="10">Зубенко Михаил Петрович</TextBlock>
     </Grid>
 </Window>

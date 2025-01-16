@@ -31,6 +31,12 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
             if (ServiceLogin.CurrentUser.UserRole == 3)
                 spProductsCrud.Visibility = Visibility.Visible;
 
+            tbUserName.Text = $"{ServiceLogin.CurrentUser.UserName} {ServiceLogin.CurrentUser.UserSurname} {ServiceLogin.CurrentUser.UserPatronymic}";
+
+            btnAddP.Click += BtnAddP_Click;
+            btnDeleteP.Click += BtnDeleteP_Click;
+            btnEditP.Click += BtnEditP_Click;
+
             updateProducts();
         }
 
@@ -43,6 +49,37 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
             {
                 lbProducts.Items.Add(new ProductModel { Product = product });
             }
+        }
+
+        private void BtnEditP_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbProducts.SelectedItem == null)
+                return;
+
+            new UpsertProduct((lbProducts.SelectedItem as ProductModel).Product).ShowDialog();
+            updateProducts();
+        }
+
+        private void BtnDeleteP_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbProducts.SelectedItem == null)
+                return;
+
+            try
+            {
+                ServiceProducts.Delete((lbProducts.SelectedItem as ProductModel).Product);
+                updateProducts();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка при удалении", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void BtnAddP_Click(object sender, RoutedEventArgs e)
+        {
+            new UpsertProduct(null).ShowDialog();
+            updateProducts();
         }
     }
 }

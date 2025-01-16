@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Plotnokov_21_102_AutoserviceGoods.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,9 +21,38 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
     /// </summary>
     public partial class UpsertProduct : Window
     {
-        public UpsertProduct()
+        private Product product;
+        string basePath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+
+        public UpsertProduct(Product product_)
         {
             InitializeComponent();
+
+            product = product_;
+            btnSave.Click += BtnSave_Click;
+            btnSelectPhoto.Click += BtnSelectPhoto_Click;
+
+            img.Source = new BitmapImage(new Uri(basePath + "\\Resources\\picture.png"));
+            if (product != null )
+            {
+                try
+                {
+                    img.Source = new BitmapImage(new Uri(basePath + "\\Resources\\" + product.ProductPhoto));
+                }
+                catch { 
+                    
+                }
+            }
+        }
+
+        private void BtnSelectPhoto_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

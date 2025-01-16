@@ -5,8 +5,99 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Plotnokov_21_102_AutoserviceGoods.Forms"
         mc:Ignorable="d"
-        Title="UpsertProduct" Height="450" Width="800">
+        Title="Добавление или редактирование товара" Height="450" Width="620" ResizeMode="NoResize">
     <Grid>
-        
+        <StackPanel Margin="10">
+            
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="120">
+                    Артикул
+                </TextBlock>
+                <TextBox x:Name="tbArticle" Width="200"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="120">
+                    Наименование
+                </TextBlock>
+                <TextBox x:Name="tbProductName" Width="200"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="120">
+                    Упаковка?
+                </TextBlock>
+                <CheckBox x:Name="cbInPack" Width="200"></CheckBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="120">
+                    Стоимость
+                </TextBlock>
+                <TextBox x:Name="tbProductCost" Width="200"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="120">
+                    Предел скидок %
+                </TextBlock>
+                <TextBox x:Name="tbMaxDiscount" Width="200"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="120">
+                    Производитель
+                </TextBlock>
+                <TextBox x:Name="tbManufact" Width="200"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="120">
+                    Категория
+                </TextBlock>
+                <TextBox x:Name="tbCategory" Width="200"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="120">
+                    Поставщик
+                </TextBlock>
+                <TextBox x:Name="tbSupplier" Width="200"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="130">
+                    Текущая скидка %
+                </TextBlock>
+                <TextBox x:Name="tbProductDiscount" Width="190"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="120">
+                    На складе всего
+                </TextBlock>
+                <TextBox x:Name="tbInStock" Width="200"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="120">
+                    Описание
+                </TextBlock>
+                <TextBox x:Name="tbDescription" Width="200" MinLines="4"></TextBox>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Button x:Name="btnSelectPhoto" Width="120" Margin="5" VerticalAlignment="Center">
+                Выбрать фото
+            </Button>
+            <Image x:Name="img" Width="120" Height="120"></Image>
+        </StackPanel>
+
+        <Button x:Name="btnSave"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Margin="10"
+                Padding="33,3,33,3"> Сохранить </Button>
     </Grid>
 </Window>
