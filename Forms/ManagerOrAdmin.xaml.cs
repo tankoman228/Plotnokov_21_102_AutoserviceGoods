@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plotnokov_21_102_AutoserviceGoods.Service;
+using Plotnokov_21_102_AutoserviceGoods.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,28 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
     /// </summary>
     public partial class ManagerOrAdmin : Window
     {
+        ServiceProducts ServiceProducts;
+
         public ManagerOrAdmin()
         {
             InitializeComponent();
+            ServiceProducts = new ServiceProducts();
+
+            if (ServiceLogin.CurrentUser.UserRole == 3)
+                spProductsCrud.Visibility = Visibility.Visible;
+
+            updateProducts();
+        }
+
+        void updateProducts()
+        {
+            var products = ServiceProducts.GetProducts(x => true);
+            lbProducts.Items.Clear();
+
+            foreach (var product in products)
+            {
+                lbProducts.Items.Add(new ProductModel { Product = product });
+            }
         }
     }
 }

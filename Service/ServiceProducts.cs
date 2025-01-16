@@ -14,7 +14,8 @@ namespace Plotnokov_21_102_AutoserviceGoods.Service
         {
             using (var db = new DB.DB())
             {
-                return db.Product.Where(x => search(x)).ToList();
+                var p = db.Product.ToList();
+                return p.Where(x => search(x)).ToList();
             }
         }
 

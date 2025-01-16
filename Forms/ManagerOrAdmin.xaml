@@ -12,8 +12,53 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition />
-                        <RowDefinition Height="50" />
+                        <RowDefinition Height="80" />
                     </Grid.RowDefinitions>
+
+                    <ListBox x:Name="lbProducts">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Margin="10" Source="{Binding ImagePath}" MaxWidth="128"></Image>
+
+                                    <GroupBox Grid.Column="1" Foreground="Black" BorderThickness="3">
+                                    <StackPanel Orientation="Vertical">
+                                        <Label Content="{Binding Product.ProductName}" FontWeight="Bold" />
+                                        <Label Content="{Binding Product.ProductDescription}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label>Производитель: </Label>
+                                            <Label Content="{Binding Product.ProductManufacturer}" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label>Цена: </Label>
+                                            <Label Content="{Binding Cost}" />
+                                        </StackPanel>
+                                        <Label />
+                                    </StackPanel>
+                                    </GroupBox>
+
+                                    <GroupBox Grid.Column="2" Foreground="Black" Width="120" Height="120" BorderThickness="3">
+                                    <TextBlock Text="{Binding Discount}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                    </GroupBox>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                   
+                    <StackPanel x:Name="spProductsCrud" Visibility="Collapsed" Orientation="Horizontal" Grid.Row="1">
+                        <Button x:Name="btnAddP">Добавить товар</Button>
+                        <Label Content=" " />
+                        <Button x:Name="btnEditP">Редактировать выбранный товар</Button>
+                        <Label Content=" " />
+                        <Button x:Name="btnDeleteP" >Удалить товар</Button>
+                        <Label Content=" " />
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Заказы">

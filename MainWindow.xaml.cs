@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Plotnokov_21_102_AutoserviceGoods.Forms;
 using Plotnokov_21_102_AutoserviceGoods.Service;
 
 namespace Plotnokov_21_102_AutoserviceGoods
@@ -26,14 +27,18 @@ namespace Plotnokov_21_102_AutoserviceGoods
         {
             InitializeComponent();
 
+            // DEBUG PART ONLY
+            ServiceLogin.Login("loginDEluw2018", "S3wj{I");
+            new ManagerOrAdmin().Show();
+            Close();
+
             btnEnter.Click += BtnEnter_Click;
             btnEnterGuest.Click += BtnEnterGuest_Click;
         }
 
         private void BtnEnterGuest_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Not implemented");
-            throw new NotImplementedException();
+            new ClientOrGuest().Show();
         }
 
         private void BtnEnter_Click(object sender, RoutedEventArgs e)
@@ -46,7 +51,17 @@ namespace Plotnokov_21_102_AutoserviceGoods
             }
 
             if (ServiceLogin.Login(tbLogin.Text, tbPassword.Password)) {
-                MessageBox.Show("Enter success");
+
+                if (ServiceLogin.CurrentUser.UserRole == 2 || ServiceLogin.CurrentUser.UserRole == 3)
+                {
+                    new ManagerOrAdmin().Show();
+                    this.Close();
+                }
+                if (ServiceLogin.CurrentUser.UserRole == 1)
+                {
+                    new ClientOrGuest().Show();
+                    this.Close();
+                }
             }
             else
             {
@@ -54,7 +69,7 @@ namespace Plotnokov_21_102_AutoserviceGoods
                 {
                     BlockEnter();
                 }
-                MessageBox.Show($"Не получилось войти, неверный логин или пароль");
+                MessageBox.Show($"Не получилось войти, неверный логин или пароль", "Enter refused", MessageBoxButton.OK, MessageBoxImage.Stop);
                 OpenCaptcha();
             }
         }
