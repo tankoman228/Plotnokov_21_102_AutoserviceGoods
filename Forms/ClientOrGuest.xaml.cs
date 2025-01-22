@@ -42,6 +42,19 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
             {
                 cbPickup.ItemsSource = db.PickupPoint.ToList();
             }
+
+            if (ServiceLogin.CurrentUser != null)
+                tbUserName.Content = $"{ServiceLogin.CurrentUser.UserName} {ServiceLogin.CurrentUser.UserSurname} {ServiceLogin.CurrentUser.UserPatronymic}";
+
+            tbUserName.Click += (s, e) =>
+            {
+                if (MessageBox.Show("Вы уверены, что хотите выйти?", "logout", MessageBoxButton.YesNo, MessageBoxImage.Hand) == MessageBoxResult.Yes)
+                {
+                    ServiceLogin.CurrentUser = null;
+                    new MainWindow().Show();
+                    Close();
+                }
+            };
         }
 
         private void BtnOrder_Click(object sender, RoutedEventArgs e)

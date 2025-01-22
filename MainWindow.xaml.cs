@@ -28,13 +28,15 @@ namespace Plotnokov_21_102_AutoserviceGoods
             InitializeComponent();
 
             // DEBUG PART ONLY
+            
             /*
             ServiceLogin.Login("loginDEluw2018", "S3wj{I");
             new ManagerOrAdmin().Show();
-            Close();*/
-            //ServiceLogin.Login("loginDEluw2018", "S3wj{I");
-            new ClientOrGuest().Show();
             Close();
+            */
+            //ServiceLogin.Login("loginDEluw2018", "S3wj{I");
+            //new ClientOrGuest().Show();
+            //Close();
 
             btnEnter.Click += BtnEnter_Click;
             btnEnterGuest.Click += BtnEnterGuest_Click;
@@ -56,6 +58,7 @@ namespace Plotnokov_21_102_AutoserviceGoods
 
             if (ServiceLogin.Login(tbLogin.Text, tbPassword.Password)) {
 
+                MessageBox.Show("Чтобы выйти из аккаунта нажмите справа вверху на имя профиля", "Времени мало, тороплюсь просто", MessageBoxButton.OK, MessageBoxImage.Information);
                 if (ServiceLogin.CurrentUser.UserRole == 2 || ServiceLogin.CurrentUser.UserRole == 3)
                 {
                     new ManagerOrAdmin().Show();

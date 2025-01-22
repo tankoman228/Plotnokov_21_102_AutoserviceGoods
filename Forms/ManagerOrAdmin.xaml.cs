@@ -31,7 +31,7 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
             if (ServiceLogin.CurrentUser.UserRole == 3)
                 spProductsCrud.Visibility = Visibility.Visible;
 
-            tbUserName.Text = $"{ServiceLogin.CurrentUser.UserName} {ServiceLogin.CurrentUser.UserSurname} {ServiceLogin.CurrentUser.UserPatronymic}";
+            tbUserName.Content = $"{ServiceLogin.CurrentUser.UserName} {ServiceLogin.CurrentUser.UserSurname} {ServiceLogin.CurrentUser.UserPatronymic}";
 
             btnAddP.Click += BtnAddP_Click;
             btnDeleteP.Click += BtnDeleteP_Click;
@@ -40,6 +40,15 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
             tbSearch.TextChanged += (s, e) => updateProducts();
             cbSortNoExpCheap.SelectionChanged += (s, e) => updateProducts();
             cbDiscount09910149915andmore.SelectionChanged += (s, e) => updateProducts();
+
+            tbUserName.Click += (s, e) =>
+            {
+                if (MessageBox.Show("Вы уверены, что хотите выйти?", "logout", MessageBoxButton.YesNo, MessageBoxImage.Hand) == MessageBoxResult.Yes) {
+                    ServiceLogin.CurrentUser = null;
+                   new MainWindow().Show();
+                    Close();
+                }
+            };
 
             updateProducts();
         }

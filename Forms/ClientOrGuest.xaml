@@ -116,6 +116,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <TextBlock x:Name="tbUserName" HorizontalAlignment="Right">Гость</TextBlock>
+        <Button x:Name="tbUserName" HorizontalAlignment="Right" VerticalAlignment="Top" >Гость</Button>
     </Grid>
 </Window>
