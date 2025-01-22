@@ -37,6 +37,10 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
             btnDeleteP.Click += BtnDeleteP_Click;
             btnEditP.Click += BtnEditP_Click;
 
+            tbSearch.TextChanged += (s, e) => updateProducts();
+            cbSortNoExpCheap.SelectionChanged += (s, e) => updateProducts();
+            cbDiscount09910149915andmore.SelectionChanged += (s, e) => updateProducts();
+
             updateProducts();
         }
 
@@ -44,6 +48,23 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
         {
             var products = ServiceProducts.GetProducts(x => true);
             lbProducts.Items.Clear();
+
+            switch (cbDiscount09910149915andmore.SelectedIndex)
+            {
+                case 0: break; // no
+                case 1: products = products.Where(x => x.ProductDiscountAmount >= 0).Where(x => x.ProductDiscountAmount < 10).ToList(); break; // 0.99 - 10
+                case 2: products = products.Where(x => x.ProductDiscountAmount >= 10).Where(x => x.ProductDiscountAmount < 15).ToList(); break; // 10 - 14 99
+                case 3: products = products.Where(x => x.ProductDiscountAmount >= 15); break; // 15+
+            }
+
+            products = products.Where(x => x.ProductName.ToLower().Contains(tbSearch.Text.ToLower())).ToList();
+
+            switch (cbSortNoExpCheap.SelectedIndex)
+            {
+                case 0: break;
+                case 1: products = products.OrderByDescending(x => x.ProductCost).ToList(); break;
+                case 2: products = products.OrderBy(x => x.ProductCost).ToList(); break;
+            }
 
             foreach (var product in products)
             {

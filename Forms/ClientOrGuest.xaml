@@ -13,7 +13,7 @@
                 </ListBox>
             </TabItem>
             <TabItem x:Name="tabBuy" IsEnabled="False">
-                dddd
+                
             </TabItem>
         </TabControl>
         <TextBlock x:Name="tbUserName" HorizontalAlignment="Right">Гость</TextBlock>

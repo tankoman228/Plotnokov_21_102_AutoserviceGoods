@@ -35,8 +35,12 @@ namespace Plotnokov_21_102_AutoserviceGoods.ViewModel
             } 
         }
 
-        public string Cost => $"{Product.ProductCost * Product.ProductDiscountAmount / (decimal)100}";
+        public string CostNoDiscount => Product.ProductDiscountAmount == 0 ? "" : Product.ProductCost.ToString("F2");
 
-        public string Discount =>  $"Скидка: {Product.ProductDiscountAmount}%"; 
+        public string Cost => (Product.ProductCost * (decimal)(100 - Product.ProductDiscountAmount) / (decimal)100).ToString("F2");
+
+        public string Discount =>  $"Скидка: {Product.ProductDiscountAmount}%";
+
+        public System.Windows.Media.Brush BG => Product.ProductDiscountAmount > 15 ? (Brush)(new BrushConverter().ConvertFrom("#7fff00")) : Brushes.White;
     }
 }
