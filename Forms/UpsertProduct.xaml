@@ -55,7 +55,7 @@
                 <TextBlock Width="120">
                     Категория
                 </TextBlock>
-                <TextBox x:Name="tbCategory" Width="200"></TextBox>
+                <ComboBox x:Name="tbCategory" Width="200" IsEditable="True"></ComboBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">

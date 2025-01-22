@@ -47,6 +47,7 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
         void updateProducts()
         {
             var products = ServiceProducts.GetProducts(x => true);
+            var totalCount = products.Count();
             lbProducts.Items.Clear();
 
             switch (cbDiscount09910149915andmore.SelectedIndex)
@@ -70,6 +71,8 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
             {
                 lbProducts.Items.Add(new ProductModel { Product = product });
             }
+
+            tbCount.Text = $"{products.Count()}/{totalCount}";
         }
 
         private void BtnEditP_Click(object sender, RoutedEventArgs e)

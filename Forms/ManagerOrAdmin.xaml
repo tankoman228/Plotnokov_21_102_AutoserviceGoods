@@ -42,6 +42,8 @@
                                 <ComboBoxItem>Скидка 10-14,99%</ComboBoxItem>
                                 <ComboBoxItem>Скидка 15% и более</ComboBoxItem>
                             </ComboBox>
+
+                            <TextBlock x:Name="tbCount"  Width="40">?/?</TextBlock>
                         </StackPanel>
                         
                         <ListBox x:Name="lbProducts" Grid.Row="1">

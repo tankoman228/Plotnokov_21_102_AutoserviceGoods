@@ -8,11 +8,96 @@
         Title="ClientOrGuest" Height="450" Width="800">
     <Grid>
         <TabControl x:Name="tabProducts" SelectedIndex="0">
-            <TabItem x:Name="tabMain" IsEnabled="False">
-                <ListBox>
-                </ListBox>
+            <TabItem x:Name="tabMain" Header="Товары">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="80" />
+                    </Grid.RowDefinitions>
+
+                    <Grid x:Name="gridProducts">
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="40" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock Width="60">Поиск:</TextBlock>
+                            <TextBox Width="200" x:Name="tbSearch"></TextBox>
+
+                            <TextBlock Width="40"></TextBlock>
+
+                            <ComboBox x:Name="cbSortNoExpCheap" SelectedIndex="0" Width="150">
+                                <ComboBoxItem>Не сортировать</ComboBoxItem>
+                                <ComboBoxItem>Сначала дороже</ComboBoxItem>
+                                <ComboBoxItem>Сначала дешевле</ComboBoxItem>
+                            </ComboBox>
+
+                            <TextBlock Width="40"></TextBlock>
+
+                            <ComboBox x:Name="cbDiscount09910149915andmore" SelectedIndex="0" Width="180">
+                                <ComboBoxItem>Все диапазоны скидок</ComboBoxItem>
+                                <ComboBoxItem>Скидка 0-9,99%</ComboBoxItem>
+                                <ComboBoxItem>Скидка 10-14,99%</ComboBoxItem>
+                                <ComboBoxItem>Скидка 15% и более</ComboBoxItem>
+                            </ComboBox>
+
+                            <TextBlock x:Name="tbCount"  Width="40">?/?</TextBlock>
+                        </StackPanel>
+
+                        <ListBox x:Name="lbProducts" Grid.Row="1">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Background="{Binding BG}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Margin="10" Source="{Binding ImagePath}" Width="128"></Image>
+
+                                        <GroupBox Grid.Column="1" Foreground="Black" BorderThickness="3"  Width="428">
+                                            <StackPanel Orientation="Vertical">
+                                                <Label Content="{Binding Product.ProductName}" FontWeight="Bold" />
+                                                <Label Content="{Binding Product.ProductDescription}" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label>Производитель:</Label>
+                                                    <Label Content="{Binding Product.ProductManufacturer}" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock>Цена:</TextBlock>
+                                                    <TextBlock Width="10"></TextBlock>
+                                                    <TextBlock Text="{Binding CostNoDiscount}" TextDecorations="Strikethrough" />
+                                                    <TextBlock Width="10"></TextBlock>
+                                                    <TextBlock Text="{Binding Cost}" />
+                                                    <Button Click="Button_Click" Tag="{Binding}">Купить</Button>
+                                                </StackPanel>
+                                                <Label />
+                                            </StackPanel>
+                                        </GroupBox>
+
+                                        <GroupBox Grid.Column="2" Foreground="Black" Width="120" Height="120" BorderThickness="3">
+                                            <TextBlock Text="{Binding Discount}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                        </GroupBox>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+
+                    <StackPanel x:Name="spProductsCrud" Visibility="Collapsed" Orientation="Horizontal" Grid.Row="1">
+                        <Button x:Name="btnAddP">Добавить товар</Button>
+                        <Label Content=" " />
+                        <Button x:Name="btnEditP">Редактировать выбранный товар</Button>
+                        <Label Content=" " />
+                        <Button x:Name="btnDeleteP" >Удалить товар</Button>
+                        <Label Content=" " />
+                    </StackPanel>
+                </Grid>
             </TabItem>
-            <TabItem x:Name="tabBuy" IsEnabled="False">
+            <TabItem x:Name="tabBuy" IsEnabled="False" Header="Заказ">
                 
             </TabItem>
         </TabControl>

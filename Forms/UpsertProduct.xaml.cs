@@ -42,6 +42,17 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
             btnSave.Click += BtnSave_Click;
             btnSelectPhoto.Click += BtnSelectPhoto_Click;
 
+            using (var db = new DB.DB())
+            {
+                foreach (var p in db.Product)
+                {
+                    if (!tbCategory.Items.Contains(p.ProductCategory))
+                    {
+                        tbCategory.Items.Add(p.ProductCategory);
+                    }
+                }
+            }
+
             img.Source = new BitmapImage(new Uri(basePath + "\\Resources\\picture.png"));
             if (!createNew)
             {
@@ -107,13 +118,20 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
                 product.ProductInPack = cbInPack.IsChecked == true;
 
                 if (product.ProductMaxDiscount > 100)
-                    throw new Exception("Скидка не может быть больше 100%");
+                    throw new Exception("Макс. скидка не может быть больше 100%");
+
+                if (product.ProductMaxDiscount < 0)
+                    throw new Exception("Скидка не может быть меньше нуля");
 
                 if (product.ProductDiscountAmount > product.ProductMaxDiscount)
                     throw new Exception("Скидка больше максимальной");
 
                 if (product.ProductQuantityInStock < 0)
                     throw new Exception("Меньше нуля кол-во на складе");
+
+                if (product.ProductCost <= 0)
+                    throw new Exception("Цена должна быть больше нуля");
+
 
                 using (var db = new DB.DB())
                 {
