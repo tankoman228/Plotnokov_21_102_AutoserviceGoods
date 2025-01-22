@@ -10,12 +10,7 @@
         <TabControl x:Name="tabProducts" SelectedIndex="0">
             <TabItem x:Name="tabMain" Header="Товары">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition Height="80" />
-                    </Grid.RowDefinitions>
-
-                    <Grid x:Name="gridProducts">
+                    <Grid x:Name="gridProducts" >
                         <Grid.RowDefinitions>
                             <RowDefinition  Height="40" />
                             <RowDefinition />
@@ -72,7 +67,7 @@
                                                     <TextBlock Text="{Binding CostNoDiscount}" TextDecorations="Strikethrough" />
                                                     <TextBlock Width="10"></TextBlock>
                                                     <TextBlock Text="{Binding Cost}" />
-                                                    <Button Click="Button_Click" Tag="{Binding}">Купить</Button>
+                                                    <Button Click="Button_Click" Tag="{Binding}">+1 к заказу</Button>
                                                 </StackPanel>
                                                 <Label />
                                             </StackPanel>
@@ -98,7 +93,27 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabBuy" IsEnabled="False" Header="Заказ">
-                
+                <Grid>
+                    <StackPanel>
+                        <ListBox MinHeight="250" x:Name="lbOrder">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Tag="{Binding}">
+                                        <TextBlock Text="{Binding Product.ProductName}" Width="200" Tag="{Binding}"></TextBlock>
+                                        <Label Content=" " />
+                                        <TextBox Text="{Binding Count}" TextChanged="TextBox_TextChanged"  MinWidth="20" Tag="{Binding}"></TextBox>
+                                        <Label Content=" " />
+                                        <Button Click="Button_Click_1" Tag="{Binding}">Убрать из корзины</Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <TextBlock x:Name="tbSum"></TextBlock>
+                        <ComboBox x:Name="cbPickup" DisplayMemberPath="Address"  Width="400"></ComboBox>
+                        <Label FontSize="1"></Label>
+                        <Button x:Name="btnOrder" Width="400">Оформить заказ, укажите выше точку выдачи заказа</Button>
+                    </StackPanel>
+                </Grid>
             </TabItem>
         </TabControl>
         <TextBlock x:Name="tbUserName" HorizontalAlignment="Right">Гость</TextBlock>
