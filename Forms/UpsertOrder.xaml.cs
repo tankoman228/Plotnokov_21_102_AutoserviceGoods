@@ -51,10 +51,11 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
                         cbPickUpPoint.SelectedItem = item;
                     }
                 }
+                order.OrderProduct = order.OrderProduct.ToList();
             }
             else
             {
-                order = new Order { OrderProduct = new List<OrderProduct>()};
+                this.order = new Order { OrderProduct = new List<OrderProduct>()};
             }
 
             btnAddToOrder.Click += BtnAddToOrder_Click;
@@ -100,18 +101,41 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
             try
             {
                 using (var db = new DB.DB())
-                {
+                {                   
                     foreach (var product in order.OrderProduct)
                     {
-                        db.Product.AddOrUpdate(product.Product);
+                        db.Product.AddOrUpdate(db.Product.Find(product.Product.ProductArticleNumber));
                     }
                     order.OrderDeliveryDate = dpDeliveryDate.SelectedDate.Value;
 
                     if (!insert)
                     {
-                        foreach (var p in order.OrderProduct)
+                        var RealOrder = db.Order.Find(order.OrderID);
+                        foreach (var p in RealOrder.OrderProduct.ToList())
                         {
-                            db.OrderProduct.Remove(db.OrderProduct.Find(order.OrderID, p.ProductArticleNumber));
+                            var f = db.OrderProduct.Find(order.OrderID, p.ProductArticleNumber);
+                            db.OrderProduct.Remove(f);
+                        }
+                        db.SaveChanges();
+                        foreach (var p in order.OrderProduct.ToList())
+                        {
+                            p.ProductArticleNumber = p.Product.ProductArticleNumber;
+                            p.Product = null;
+                            p.Order = null;
+                            p.OrderID = order.OrderID;
+                            db.OrderProduct.Add(p);
+                        }
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        foreach (var p in order.OrderProduct.ToList())
+                        {
+                            p.ProductArticleNumber = p.Product.ProductArticleNumber;
+                            p.Product = null;
+                            p.Order = null;
+                            p.OrderID = order.OrderID;
+                            db.OrderProduct.Add(p);
                         }
                     }
 
@@ -127,7 +151,9 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
                 {
                     MessageBox.Show(ex.InnerException.InnerException.Message, "Error of DB", MessageBoxButton.OK);
                 }
-                catch { }
+                catch {
+                    MessageBox.Show(ex.Message + "\n" + ex.StackTrace, "Error", MessageBoxButton.OK);
+                }
             }
         }
 
