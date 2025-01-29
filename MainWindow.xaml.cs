@@ -29,11 +29,11 @@ namespace Plotnokov_21_102_AutoserviceGoods
 
             // DEBUG PART ONLY
             
-            
+            /*
             ServiceLogin.Login("loginDEluw2018", "S3wj{I");
             new ManagerOrAdmin().Show();
             Close();
-            
+            */
             /*
             ServiceLogin.Login("loginDEluw2018", "S3wj{I");
             new ClientOrGuest().Show();
