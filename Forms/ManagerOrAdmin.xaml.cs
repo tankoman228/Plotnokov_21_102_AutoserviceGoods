@@ -30,6 +30,8 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
 
             if (ServiceLogin.CurrentUser.UserRole == 3)
                 spProductsCrud.Visibility = Visibility.Visible;
+            else
+                gridOrders.Visibility = Visibility.Collapsed;
 
             tbUserName.Content = $"{ServiceLogin.CurrentUser.UserName} {ServiceLogin.CurrentUser.UserSurname} {ServiceLogin.CurrentUser.UserPatronymic}";
 
@@ -51,6 +53,20 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
             };
 
             updateProducts();
+            updateOrders();
+        }
+
+        void updateOrders()
+        {
+            using (var db = new DB.DB())
+            {
+                var orders = db.Order.Include("OrderProduct").Include("OrderProduct.Product").ToList(); 
+                lbOrders.Items.Clear();
+                foreach (var o in orders)
+                {
+                    lbOrders.Items.Add(new OrderModel { Order = o});
+                }               
+            }
         }
 
         void updateProducts()

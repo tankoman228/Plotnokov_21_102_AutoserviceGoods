@@ -79,6 +79,7 @@
     <Compile Include="Service\ServiceLogin.cs" />
     <Compile Include="Service\ServiceOrder.cs" />
     <Compile Include="Service\ServiceProducts.cs" />
+    <Compile Include="ViewModel\OrderModel.cs" />
     <Compile Include="ViewModel\ProductModel.cs" />
     <Page Include="Forms\ClientOrGuest.xaml">
       <SubType>Designer</SubType>
