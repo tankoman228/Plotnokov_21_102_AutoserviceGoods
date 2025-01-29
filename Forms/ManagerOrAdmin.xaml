@@ -100,6 +100,7 @@
                 <Grid x:Name="gridOrders">
                     <Grid.RowDefinitions>
                         <RowDefinition />
+                        <RowDefinition Height="40" />
                     </Grid.RowDefinitions>
 
                     <ListBox x:Name="lbOrders">
@@ -144,9 +145,12 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
 
-                    <StackPanel x:Name="spOrderCrud" Visibility="Collapsed" Orientation="Horizontal" Grid.Row="1">
+                    <StackPanel x:Name="spOrderCrud" Orientation="Horizontal" Grid.Row="1">
+                        <Button x:Name="btnAddOrder">Новый заказ</Button>
+                        <Label Content=" " />
                         <Button x:Name="btnEditOrder">Редактировать выбранный заказ</Button>
                         <Label Content=" " />
+                        
                     </StackPanel>
                 </Grid>
 

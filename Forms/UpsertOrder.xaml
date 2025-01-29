@@ -7,6 +7,50 @@
         mc:Ignorable="d"
         Title="UpsertOrder" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="0.2*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock x:Name="tbId">Идентификатор</TextBlock>
+            <TextBox x:Name="tbIdTb" IsReadOnly="True"></TextBox>
+            <TextBlock>Точка выдачи заказа</TextBlock>
+            <ComboBox x:Name="cbPickUpPoint" DisplayMemberPath="Address"></ComboBox>
+            <TextBlock>Дата доставки</TextBlock>
+            <DatePicker x:Name="dpDeliveryDate"></DatePicker>
+            <TextBlock>Статус</TextBlock>
+            <TextBox x:Name="tbStatus"></TextBox>
+        </StackPanel>
+        <Button x:Name="btnSave" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="9">Сохранить</Button>
+
+        <ListBox Grid.Column="1" x:Name="lbProductOrder">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <GroupBox Grid.Column="1" Foreground="Black" BorderThickness="3" MinWidth="428">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Товаров:" />
+                            <TextBlock Text="{Binding Count}" />
+                            <TextBlock Text="Имя товара:" />
+                            <Label Content="{Binding Product.ProductName}" FontWeight="Bold" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>Цена без скидки:</TextBlock>
+                                <TextBlock Text="{Binding Product.ProductCost}" />
+                            </StackPanel>
+                            <Label />
+                        </StackPanel>
+                    </GroupBox>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+            <Button x:Name="btnAddToOrder">Добавить к заказу</Button>
+            <ComboBox x:Name="cbAddToOrder" DisplayMemberPath="ProductName"></ComboBox>
+            <Button x:Name="btnDeleteFromOrder">Удалить из заказа выбранное</Button>
+        </StackPanel>
     </Grid>
 </Window>

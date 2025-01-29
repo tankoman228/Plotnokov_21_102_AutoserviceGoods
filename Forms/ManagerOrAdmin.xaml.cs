@@ -30,14 +30,15 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
 
             if (ServiceLogin.CurrentUser.UserRole == 3)
                 spProductsCrud.Visibility = Visibility.Visible;
-            else
-                gridOrders.Visibility = Visibility.Collapsed;
 
             tbUserName.Content = $"{ServiceLogin.CurrentUser.UserName} {ServiceLogin.CurrentUser.UserSurname} {ServiceLogin.CurrentUser.UserPatronymic}";
 
             btnAddP.Click += BtnAddP_Click;
             btnDeleteP.Click += BtnDeleteP_Click;
             btnEditP.Click += BtnEditP_Click;
+
+            btnAddOrder.Click += BtnAddOrder_Click;
+            btnEditOrder.Click += BtnEditOrder_Click;
 
             tbSearch.TextChanged += (s, e) => updateProducts();
             cbSortNoExpCheap.SelectionChanged += (s, e) => updateProducts();
@@ -53,6 +54,21 @@ namespace Plotnokov_21_102_AutoserviceGoods.Forms
             };
 
             updateProducts();
+            updateOrders();
+        }
+
+        private void BtnEditOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbOrders.SelectedItem == null)
+                return;
+
+            new UpsertOrder((lbOrders.SelectedItem as OrderModel).Order).ShowDialog();
+            updateOrders();
+        }
+
+        private void BtnAddOrder_Click(object sender, RoutedEventArgs e)
+        {
+            new UpsertOrder(null).ShowDialog();
             updateOrders();
         }
 
